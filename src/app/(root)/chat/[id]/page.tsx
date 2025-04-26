@@ -5,8 +5,8 @@ import { getUserCurrentConversations } from '@/utils/db.action';
 import { Metadata } from 'next';
 import React from 'react'
 
-export async function generateMetadata({params}:{params:{id:string}}):  Promise<Metadata> {
-  const id = params?.id;
+export async function generateMetadata({params}:{params:any}):  Promise<Metadata> {
+  const {id} = params;
 
   const user = await getCurrentUser();
   const currentChannel = await getUserCurrentConversations(user?.id, id);
