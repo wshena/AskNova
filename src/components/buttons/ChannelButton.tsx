@@ -11,6 +11,8 @@ import { HosrizontalDotsIcon, PenIcon, ShareIcon } from '../icons/icons'
 import { cn } from '@/lib/utils'
 import { Button } from '../ui/button'
 import RemoveChannelButton from './RemoveChannelButton'
+import { useAppDispatch } from '@/lib/hooks'
+import { setSidebar } from '@/lib/redux/slice/utilitySlice'
 
 interface Props {
   id: string,
@@ -19,6 +21,7 @@ interface Props {
 
 const ChannelButton = ({id, title}:Props) => {
   const [hover, setHover] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   return (
     <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className='cursor-pointer'>
@@ -27,9 +30,11 @@ const ChannelButton = ({id, title}:Props) => {
         'transition-all duration-300 ease-in-out',
         hover && 'bg-gray-500/30'
       )}>
-        <Link href={`/chat/${id}`}>
+        <Link href={`/chat/${id}`} onClick={() => dispatch(setSidebar(false))}>
           <span>{title}</span>
         </Link>
+
+        {/* pop up */}
         {hover && (
           <Popover>
             <PopoverTrigger asChild className='bg-none'>

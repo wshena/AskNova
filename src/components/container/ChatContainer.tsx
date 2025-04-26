@@ -53,13 +53,13 @@ const ChatContainer = ({ userId, chnlId }: { userId: string, chnlId:string }) =>
   }
 
   return (
-    <>
+    <div className='relative w-full h-full flex flex-col justify-between items-center pb-[30px]'>
       <div className="w-full flex items-center justify-center">
-        <div className="w-full md:w-[90%] lg:w-[70%] xl:w-[60%] h-[47vh] md:h-[47vh] xl:h-[54vh] 2xl:h-[78vh] overflow-y-auto flex flex-col gap-4">
+        <div className="w-full md:w-[90%] lg:w-[70%] xl:w-[60%] h-[53vh] md:h-[53vh] lg:h-[65vh] 2xl:h-[80vh] overflow-y-auto flex flex-col gap-4">
           {messages?.map(msg => (
-            <div key={msg.id} className="flex flex-col gap-2">
+            <div key={msg.id} className="flex flex-col gap-2 px-4">
               <PromptContainer content={msg.content} />
-              <div className="ml-4 flex flex-col gap-1">
+              <div className="flex flex-col gap-1">
                 {answers?.[msg.id]?.map(ans => (
                   <MarkdownWrapper key={ans.id} content={ans.content} />
                 )) ?? <em>Loading answers…</em>}
@@ -68,15 +68,17 @@ const ChatContainer = ({ userId, chnlId }: { userId: string, chnlId:string }) =>
           ))}
         </div>
       </div>
-
-      <PromptInputContainer>
-        <PromptInput
-          userId={userId}
-          channelId={channelId}
-          onMessageSent={handleNewMessage}   // ← pass callback
-        />
-      </PromptInputContainer>
-    </>
+      
+      <div className="w-full">
+        <PromptInputContainer>
+          <PromptInput
+            userId={userId}
+            channelId={channelId}
+            onMessageSent={handleNewMessage}   // ← pass callback
+          />
+        </PromptInputContainer>
+      </div>
+    </div>
   )
 }
 

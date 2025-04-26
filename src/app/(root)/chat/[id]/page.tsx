@@ -29,7 +29,7 @@ const page = async ({params}:{params:any}) => {
   
   return (
     <MainWrapper>
-      <div className="w-full mt-[80px] py-[20px] flex flex-col gap-[20px]">
+      <div className="pt-[90px] h-[100vh]">
         <ChatContainer userId={user?.id} chnlId={id} />
       </div>
     </MainWrapper>
